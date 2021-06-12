@@ -116,6 +116,7 @@ ssize_t socket_getline(char **buffer, size_t *bufsize, int fd) {
 
 int get_ip(char **ip, size_t *out_bufsize) {
   int fd = connect_host("ipv4.icanhazip.com", 80);
+  //int fd = connect_host("localhost", 9000);
 
   if (fd < 0) {
     perror(" socket() error");
@@ -135,6 +136,7 @@ int get_ip(char **ip, size_t *out_bufsize) {
   
 
   const char GET_MSG[] = "GET / HTTP/1.1\r\nHost: ipv4.icanhazip.com\r\nUser-Agent: SSL DUC/0.1 Linux64\r\nAccept: */*\r\nConnection: close\r\n\r\n";
+  //const char GET_MSG[] = "GET / HTTP/1.1\r\nHost: localhost\r\nUser-Agent: SSL DUC/0.1 Linux64\r\nAccept: */*\r\nConnection: close\r\n\r\n";
   {
     int sent = 0;
     int ret_code;
