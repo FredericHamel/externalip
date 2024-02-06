@@ -132,8 +132,6 @@ int get_ip(char **ip, size_t *out_bufsize) {
     .fd = fd,
     .events = POLLIN | POLLOUT,
     .revents = 0 };
-  
-  
 
   const char GET_MSG[] = "GET / HTTP/1.1\r\nHost: ipv4.icanhazip.com\r\nUser-Agent: SSL DUC/0.1 Linux64\r\nAccept: */*\r\nConnection: close\r\n\r\n";
   //const char GET_MSG[] = "GET / HTTP/1.1\r\nHost: localhost\r\nUser-Agent: SSL DUC/0.1 Linux64\r\nAccept: */*\r\nConnection: close\r\n\r\n";
@@ -186,7 +184,7 @@ int get_ip(char **ip, size_t *out_bufsize) {
     close(fd);
     return 1;
   }
-  
+
   if (content_length < 0) {
     fprintf(stderr, "Content-Length not specify\n");
     len = socket_getline(&response, &bufsize, fd);
@@ -224,7 +222,7 @@ int main(int argc, char **argv) {
   if(get_ip(&ip, &ip_len)) {
     goto ret0;
   }
-  
+
   fprintf(stdout, "My ip is: %s\n", ip);
 ret0:
   free(ip);
